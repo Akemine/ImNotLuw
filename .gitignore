@@ -2,10 +2,7 @@
 
 # dependencies
 /node_modules
-<<<<<<< HEAD
 .env
-=======
->>>>>>> ccc45f8f5056359730b4aa783cf7685f8a0a81a4
 /.pnp
 .pnp.js
 
