@@ -3,7 +3,7 @@ body{
 }
 .App-header {
 
-  font-size: calc(40px + 2vmin);
+  font-size: 100%;
   color: #F6EAEA;
   background: rgba(160, 35, 163, 0.60);
   box-sizing: border-box;
@@ -12,20 +12,21 @@ body{
 }
 
 .App-footer {
-  height: 13%;
-  font-size: 25px;
+  height: 8%;
   color: #F6EAEA;
   background: rgba(160, 35, 163, 0.60);
   border-radius: 50px;
-
+  margin-bottom: 2%;
 }
 
 .App-content{
   /* background: rgba(160, 35, 163, 0.10); */
   width: 100%;
-  height: 68%;
-  box-shadow: 0px -9px 9px -13px #c662b3;
+  height: 80%;
+}
 
+.sizeText {
+  font-size: 60%;
 }
 
 .primary {
@@ -76,30 +77,23 @@ body{
   overflow-y: auto;
   text-align:justify;
 }
-.scrollBarVerticalSiPlusieursMenu {
-  padding: 4px;
-  height: 90%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align:justify;
-}
 
 .imgRounded {
-  filter: brightness(60%);
+  filter: brightness(80%);
   border-radius: 30px;
   /* La transition s'applique à la fois sur la largeur et la hauteur, avec une durée d'une seconde. */
   -webkit-transition: all 1s ease; /* Safari et Chrome */
   -moz-transition: all 1s ease; /* Firefox */
   -ms-transition: all 1s ease; /* Internet Explorer 9 */
   -o-transition: all 1s ease; /* Opera */
-  transition: all 15s ease;
+  transition: all 3s ease;
 
-  /* L'image est grossie de 25% */
-  -webkit-transform:scale(1); /* Safari et Chrome */
-  -moz-transform:scale(1); /* Firefox */
-  -ms-transform:scale(1); /* Internet Explorer 9 */
-  -o-transform:scale(1); /* Opera */
-  transform:scale(1);
+  /*!* L'image est grossie de 25% *!*/
+  /*-webkit-transform:scale(1); !* Safari et Chrome *!*/
+  /*-moz-transform:scale(1); !* Firefox *!*/
+  /*-ms-transform:scale(1); !* Internet Explorer 9 *!*/
+  /*-o-transform:scale(1); !* Opera *!*/
+  /*transform:scale(1);*/
 }
 
 .imgRounded:hover{
@@ -114,27 +108,26 @@ body{
   -o-transition: all 1s ease; /* Opera */
   transition: all 2s ease;
 
-  /* L'image est grossie de 25% */
-  -webkit-transform:scale(1.20); /* Safari et Chrome */
-  -moz-transform:scale(1.20); /* Firefox */
-  -ms-transform:scale(1.20); /* Internet Explorer 9 */
-  -o-transform:scale(1.20); /* Opera */
-  transform:scale(1.40);
+  /*!* L'image est grossie de 25% *!*/
+  /*-webkit-transform:scale(1.20); !* Safari et Chrome *!*/
+  /*-moz-transform:scale(1.20); !* Firefox *!*/
+  /*-ms-transform:scale(1.20); !* Internet Explorer 9 *!*/
+  /*-o-transform:scale(1.20); !* Opera *!*/
+  /*transform:scale(1.40);*/
 }
 
 
-.formalisationTailleImage {
-  width:145px !important;
-  height: 145px !important;
-}
+/*.formalisationTailleImage {*/
+/*  !*width:145px !important;*!*/
+/*  !*height: 145px !important;*!*/
+/*}*/
 
 
 /* Skin de la scrollbar */
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
-
+  width: 7px;
 }
 
 /* Track */

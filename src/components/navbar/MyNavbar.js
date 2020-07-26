@@ -40,7 +40,7 @@ export class MyNavbar extends Component {
                         
                     </span>
          
-                    <span style={{display: 'flex', alignSelf:'center'}}>ImNotLuw </span>
+                    <h1 style={{display: 'flex', alignSelf:'center'}}>ImNotLuw </h1>
                     {this.displayLiveOnlineOrOffline(this.props.is_live)}
             </div>
         </header>

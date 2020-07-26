@@ -24,9 +24,11 @@ class App extends Component {
     super(props)
     this.state = {
       images: [], // tableau des images
-      twitch: [], // information venant de l'api twitch
+      twitchChannel: [], // information venant de l'api twitch
+      twitchStream: [],
       is_live: false, // boolean du live, on ou off
       authorization: '', // token d'authorization de twitch
+      viewer_count: 0,
       loaded: false, // loader true si la page est prête
       loadedLive: false // loader true si l'api twitch a répondu
     }
@@ -44,14 +46,24 @@ class App extends Component {
         .then(response => {
           this.setState({authorization: response.data.access_token})
           apiTwitch
-              .get('/helix/search/channels?query=SixQuatre&first=1', {
+              .get('/helix/search/channels?query='+ process.env.REACT_APP_IMNOTLUW_TWITCH_USERNAME +'&first=1', {
                 headers: {
                   Authorization: 'Bearer ' + this.state.authorization
                 }
               })
               .then(response => {
-                this.setState({twitch: response.data})
-                if (this.state.twitch.data[0].is_live === true)
+                this.setState({twitchChannel: response.data})
+                if (this.state.twitchChannel.data[0].is_live === true)
+                  apiTwitch.get('/helix/streams?user_login=' + process.env.REACT_APP_IMNOTLUW_TWITCH_USERNAME, {
+                    headers: {
+                      Authorization: 'Bearer ' + this.state.authorization
+                    }
+                  })
+                      .then(response =>{
+                        this.setState( {twitchStream: response.data} )
+                        this.setState({viewer_count: this.state.twitchStream.data[0].viewer_count})
+                      })
+                      .catch(err => console.log(err));
                   this.setState({
                     is_live: true // passe à true si le live est online
                   })
@@ -66,7 +78,7 @@ class App extends Component {
 
   // Api vers mon serveur NodeJS qui va récolter toutes les images nécessaires à la galerie
   getImageFromNode() {
-    axios.get('http://imnotluwstream.com/images', {
+    axios.get('https://imnotluwstream.com/images', {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
@@ -87,6 +99,8 @@ class App extends Component {
 
   // Le rendu de la page App.js
   render() {
+
+    console.log(this.state.viewer_count)
     return <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100vh'}}
                 className="container">
 
@@ -95,8 +109,8 @@ class App extends Component {
         <MyNavbar is_live={this.state.is_live}/>
 
         {/*Component MyContent*/}
-        <div className="App-content myRounded d-flex pt-3 pb-3">
-          {this.state.loaded ? <MyContent images={this.state.images}/> : <Loading/>}
+        <div className="App-content myRounded d-flex">
+          {this.state.loaded ? <MyContent viewers={this.state.viewer_count} images={this.state.images}/> : <Loading/>}
         </div>
 
         {/*Component MyFooter*/}
