@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class Order extends Component{
 
     render() {
-        return <div className='myRounded d-flex' style={{ width: 'auto', height: 'auto', flexDirection: 'column', alignItems:'center'}}>
+        return <div className='myRounded d-flex' style={{ width: 'auto', height: 'auto', flexDirection: 'column', alignItems:'center', paddingLeft: '10%'}}>
             <img
                  className='img-fluid'
                  style={{width:'auto'}}

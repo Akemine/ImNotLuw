@@ -16,7 +16,7 @@ export class MyNavbar extends Component {
     displayLiveOnlineOrOffline(is_live){
         if(is_live){
 
-            return <img style={{width:'10%', display:'flex'}} src={process.env.PUBLIC_URL + '/images/luwonline.png'} alt="luwImage" />
+            return <img style={{width:'6%', display:'flex'}} src={process.env.PUBLIC_URL + '/images/luwonline.png'} alt="luwImage" />
         } else{
 
             return <img style={{width:'8%', display:'flex', borderRadius: '70px'}} className="" src={process.env.PUBLIC_URL + '/images/luwoffline.png'} alt="luwImage" />

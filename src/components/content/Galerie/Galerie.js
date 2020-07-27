@@ -23,7 +23,7 @@ class Galerie extends Component {
     render() {
           
         return <SRLWrapper>
-                  <div className="myRounded d-flex justify-content-around " style={{flexWrap:'wrap', height: '90%', background:'#ffc0cb26'}}>
+                  <div className="myRounded d-flex justify-content-around " style={{flexWrap:'wrap', height: '90%', background:'#ffc0cb26', paddingRight:'5%'}}>
                             {this.props.images.data.map((myImg, index) => <div key={index}>
                                       <img
                                           style={{padding:'2px', border: '3px solid ' +  this.randomColorGenerator(0, 10)}}

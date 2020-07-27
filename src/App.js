@@ -101,8 +101,8 @@ class App extends Component {
   render() {
 
     console.log(this.state.viewer_count)
-    return <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100vh'}}
-                className="container">
+    return <div style={{justifyContent: 'space-between', flexDirection: 'column', height: '100vh'}}
+                className="container myDisplay">
 
       {this.state.loadedLive ? <>
         {/*Component Navbar */}
