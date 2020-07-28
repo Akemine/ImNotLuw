@@ -77,17 +77,19 @@ class MyContent extends Component {
 
 
     render() {
-
+console.log(this.props.color)
         return (
             <>
+
                 {/*Les 3 menus */}
                 {!this.state.toggleGalerie && !this.state.toggleTwitch && !this.state.toggleOrder ? <>
-                    <div className="myRounded menu_format_MyContent" >
-                        <h2 className="text-center hoverText" style={{color: '#E54EE8'}}>
+                    <div className='myDisplay myRounded espacement_twitch_left_menu' style={{justifyContent: 'space-around'}}>
+                    <div className="myRounded menu_format_MyContent " >
+                        <h2 className="text-center hoverText" style={{color: this.props.color}}>
                             <a
-                                style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                                style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                                 className='hoverText' href={"#"}
-                                onClick={this.TwitchOn}>Twitch ({this.props.viewers} viewers)</a>
+                                onClick={this.TwitchOn}>Twitch ({this.props.viewers})</a>
                         </h2>
                         <Twitch/>
                     </div>
@@ -95,7 +97,7 @@ class MyContent extends Component {
                     <div className={'menu_format_MyContent myRounded'}>
                         <h2 className={'text-center'}>
                             <a
-                                style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                                style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                                 className='hoverText' href={"#"}
                                 onClick={this.GalerieOn}>Galerie
                             </a>
@@ -107,24 +109,24 @@ class MyContent extends Component {
                         </div>
                     </div>
 
-                    <div className="myRounded menu_format_MyContent d-flex" style={{flexDirection: "column"}} >
+                    <div className="myRounded menu_format_MyContent myDisplay" style={{flexDirection: "column"}} >
                         <h2 className="text-center hoverText" style={{color: '#E54EE8'}}>
                             <a
-                                style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                                style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                                 className='hoverText' href={"#"}
                                 onClick={this.OrderOn}>Commande
                             </a>
                         </h2>
                         <Order/>
                     </div>
-
+                    </div>
 
                 </> : this.state.toggleGalerie ? <>
                     {/* Galerie en grand*/}
                     <div className=' myRounded'>
                         <div className='text-center' style={{fontSize: '40px'}}>
                             <a
-                                style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                                style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                                 className='hoverText' href={"#"}
                                 onClick={this.GalerieOff}> {backMenu_text}
                             </a>
@@ -141,7 +143,7 @@ class MyContent extends Component {
                     <div className=' myRounded d-flex w-100' style={{flexDirection: 'column', alignItems:'center'}}>
                         <div className='text-center ' style={{fontSize: '40px'}}>
                             <a
-                                style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                                style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                                 className='hoverText' href={"#"}
                                 onClick={this.TwitchOff}> {backMenu_text}
                             </a>
@@ -154,7 +156,7 @@ class MyContent extends Component {
                 <div className=' myRounded'>
                     <div className='text-center' style={{fontSize: '40px'}}>
                         <a
-                            style={{textDecoration: 'none', color: '#E54EE8', fontSize: '3vw'}}
+                            style={{textDecoration: 'none', color: this.props.color, fontSize: '3vw'}}
                             className='hoverText' href={"#"}
                             onClick={this.OrderOff}> {backMenu_text}
                         </a>

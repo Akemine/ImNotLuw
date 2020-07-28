@@ -1,16 +1,17 @@
 import React, {Component} from "react";
-import { TwitchEmbed} from 'react-twitch-embed';
+import {TwitchChat, TwitchEmbed, TwitchPlayer} from 'react-twitch-embed';
 
 class EmbebTwitch extends Component{
     render(){
         return (
-            <>
+            <div style={{width: '100%', height:'100%'}}>
                 <TwitchEmbed
                     channel={process.env.REACT_APP_IMNOTLUW_TWITCH_USERNAME}
-                    theme="dark"
+                    width='100%'
+                    height='86%'
                     onVideoPause={() => console.log(':(')}
                 />
-            </>
+            </div>
         )
     }
 

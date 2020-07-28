@@ -15,6 +15,7 @@ import Loading from './components/utils/Loading';
 import apiTwitch from './conf/api.twitch';
 import idTwitch from './conf/id.twitch';
 import axios from 'axios';
+import SocialNetworkFooter from "./components/footer/SocialNetworkFooter";
 
 
 // Class App.js
@@ -54,16 +55,16 @@ class App extends Component {
               .then(response => {
                 this.setState({twitchChannel: response.data})
                 if (this.state.twitchChannel.data[0].is_live === true)
-                  apiTwitch.get('/helix/streams?user_login=' + process.env.REACT_APP_IMNOTLUW_TWITCH_USERNAME, {
-                    headers: {
-                      Authorization: 'Bearer ' + this.state.authorization
-                    }
-                  })
-                      .then(response =>{
-                        this.setState( {twitchStream: response.data} )
-                        this.setState({viewer_count: this.state.twitchStream.data[0].viewer_count})
-                      })
-                      .catch(err => console.log(err));
+                  // apiTwitch.get('/helix/streams?user_login=' + process.env.REACT_APP_IMNOTLUW_TWITCH_USERNAME, {
+                  //   headers: {
+                  //     Authorization: 'Bearer ' + this.state.authorization
+                  //   }
+                  // })
+                  //     .then(response =>{
+                  //       this.setState( {twitchStream: response.data} )
+                  //       this.setState({viewer_count: this.state.twitchStream.data[0].viewer_count})
+                  //     })
+                  //     .catch(err => console.log(err));
                   this.setState({
                     is_live: true // passe à true si le live est online
                   })
@@ -91,30 +92,53 @@ class App extends Component {
         .catch(err => console.log(err));
   }
 
+
   // On vient jouer les API une fois le component App monté
   componentDidMount() {
     this.getDataFromTwitch() // Appel api à twitch qui renvoit si live Off ou On
     this.getImageFromNode() // Appel api à mon serveur nodeJS pour récupérer les images
+
   }
+
+  randomColorGenerator(min, max){
+
+    this.state.colors = ['orange', '#8D5A97', '#B8EBD0', 'cyan', 'pink', 'purple', 'pink'];
+    this.state.color = Math.floor(Math.random() * (max - min + 1) ) + min;
+    return this.state.colors[this.state.color]
+
+  }
+
 
   // Le rendu de la page App.js
   render() {
 
-    console.log(this.state.viewer_count)
-    return <div style={{justifyContent: 'space-between', flexDirection: 'column', height: '100vh'}}
-                className="container myDisplay">
+
+    return <div style={{flexDirection: 'column', height: '100vh', bottom:'40px'}}
+                className="container myDisplay position-relative">
 
       {this.state.loadedLive ? <>
-        {/*Component Navbar */}
-        <MyNavbar is_live={this.state.is_live}/>
 
+        {/*Component Navbar */}
+        {/*<MyNavbar is_live={this.state.is_live}/>*/}
+        <div className='position-relative placementLogo' style={{top: '6%', textAlign: 'center'}}>
+
+          <img
+              src={process.env.PUBLIC_URL + '/images/logo.png'}
+              alt="logo"
+              className="img-fluid tailleLogo"
+          />
+
+        </div>
         {/*Component MyContent*/}
-        <div className="App-content myRounded d-flex">
-          {this.state.loaded ? <MyContent viewers={this.state.viewer_count} images={this.state.images}/> : <Loading/>}
+        <div className="App-content myRounded d-flex" style={{border: '4vw '+this.randomColorGenerator(0, 6)+' solid'}}>
+          {this.state.loaded ? <MyContent viewers={this.state.viewer_count} images={this.state.images} color={this.state.colors[this.state.color]}/>  : <Loading/>}
         </div>
 
+        <div className='position-relative placementSocialNetwork' style={{bottom:'8%', left:'69%'}}>
+          <SocialNetworkFooter/>
+        </div>
         {/*Component MyFooter*/}
-        <MyFooter is_live={this.state.is_live}/>
+        {/*<MyFooter is_live={this.state.is_live}/>*/}
       </> : <Loading/>}
 
 
